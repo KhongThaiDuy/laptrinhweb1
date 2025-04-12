@@ -2,6 +2,52 @@
 
 @section('content')
 <main class="signup-form">
+    <style>
+        .signup-form {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        .card {
+            width: 400px;
+            margin: 50px auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        .card-header {
+            background-color: #f8f9fa;
+            font-size: 1.5em;
+            padding: 10px 0;
+        }
+        .form-group input {
+            width: 100%;
+            padding: 8px;
+            margin: 5px 0;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+        }
+        .form-group input:focus {
+            border-color: #007bff;
+            outline: none;
+        }
+        .form-group span {
+            color: red;
+            font-size: 0.9em;
+        }
+        .btn {
+            background-color: #007bff;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .btn:hover {
+            background-color: #0056b3;
+        }
+    </style>
+
     <div class="cotainer">
         <div class="row justify-content-center">
             <div class="col-md-4">
@@ -31,22 +77,6 @@
                                     name="password" required>
                                 @if ($errors->has('password'))
                                     <span class="text-danger">{{ $errors->first('password') }}</span>
-                                @endif
-                            </div>
-
-                            <div class="form-group mb-3">
-                                <input type="text" placeholder="Phone" id="phone" class="form-control"
-                                    name="phone">
-                                @if ($errors->has('phone'))
-                                    <span class="text-danger">{{ $errors->first('phone') }}</span>
-                                @endif
-                            </div>
-
-                            <div class="form-group mb-3">
-                                <input type="text" placeholder="Address" id="address" class="form-control"
-                                    name="address">
-                                @if ($errors->has('address'))
-                                    <span class="text-danger">{{ $errors->first('address') }}</span>
                                 @endif
                             </div>
 
