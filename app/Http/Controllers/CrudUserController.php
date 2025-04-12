@@ -59,17 +59,22 @@ class CrudUserController extends Controller
             'name' => 'required',
             'email' => 'required|email|unique:users',
             'password' => 'required|min:6',
+            'phone' => 'nullable',
+            'address' => 'nullable',
         ]);
 
         $data = $request->all();
-        $check = User::create([
+        User::create([
             'name' => $data['name'],
             'email' => $data['email'],
-            'password' => Hash::make($data['password'])
+            'password' => Hash::make($data['password']),
+            'phone' => $data['phone'],
+            'address' => $data['address'],
         ]);
 
         return redirect("login");
     }
+
 
     /**
      * View user detail page
@@ -111,18 +116,23 @@ class CrudUserController extends Controller
 
         $request->validate([
             'name' => 'required',
-            'email' => 'required|email|unique:users,id,'.$input['id'],
+            'email' => 'required|email|unique:users,email,'.$input['id'],
             'password' => 'required|min:6',
+            'phone' => 'nullable',
+            'address' => 'nullable',
         ]);
 
-       $user = User::find($input['id']);
-       $user->name = $input['name'];
-       $user->email = $input['email'];
-       $user->password = $input['password'];
-       $user->save();
+        $user = User::find($input['id']);
+        $user->name = $input['name'];
+        $user->email = $input['email'];
+        $user->password = Hash::make($input['password']);  // nhớ mã hóa nè
+        $user->phone = $input['phone'];
+        $user->address = $input['address'];
+        $user->save();
 
-        return redirect("list")->withSuccess('You have signed-in');
+        return redirect("list")->withSuccess('User updated successfully');
     }
+
 
     /**
      * List of users

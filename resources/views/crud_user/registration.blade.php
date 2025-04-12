@@ -2,7 +2,77 @@
 
 @section('content')
     <main class="signup-form">
-        <div class="cotainer">
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                text-align: center;
+            }
+
+            .signup-form {
+                padding: 30px;
+                margin-top: 50px;
+            }
+
+            .card {
+                width: 100%;
+                max-width: 400px;
+                margin: 0 auto;
+                padding: 20px;
+                border-radius: 5px;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            }
+
+            .card-header {
+                background-color: #343a40;
+                color: #fff;
+                padding: 15px;
+                text-align: center;
+                border-radius: 5px;
+            }
+
+            .form-group {
+                margin-bottom: 15px;
+            }
+
+            .form-control {
+                width: 100%;
+                padding: 10px;
+                border: 1px solid #ccc;
+                border-radius: 5px;
+                margin-top: 5px;
+            }
+
+            .form-control:focus {
+                border-color: #007bff;
+                outline: none;
+            }
+
+            .checkbox label {
+                font-size: 14px;
+            }
+
+            .btn-dark {
+                background-color: #343a40;
+                color: white;
+                padding: 10px;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+                width: 100%;
+                font-size: 16px;
+            }
+
+            .btn-dark:hover {
+                background-color: #23272b;
+            }
+
+            .text-danger {
+                color: red;
+                font-size: 12px;
+            }
+        </style>
+        
+        <div class="container">
             <div class="row justify-content-center">
                 <div class="col-md-4">
                     <div class="card">
