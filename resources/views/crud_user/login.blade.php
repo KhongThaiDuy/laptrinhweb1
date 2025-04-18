@@ -86,9 +86,7 @@
     }
 </style>
 
-<div class="menu">
-    <a href="#">Home</a> | <a href="#">Đăng nhập</a> | <a href="#">Đăng ký</a>
-</div>
+
 
 <div class="login-box">
     <h2>Màn hình đăng nhập</h2>

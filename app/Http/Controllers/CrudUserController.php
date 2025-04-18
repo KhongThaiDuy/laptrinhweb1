@@ -54,23 +54,28 @@ class CrudUserController extends Controller
      * User submit form register
      */
     public function postUser(Request $request)
-    {
-        $request->validate([
-            'name' => 'required',
-            'email' => 'required|email|unique:users',
-            'password' => 'required|min:6'
-        ]);
+{
+    $request->validate([
+        'name' => 'required',
+        'email' => 'required|email|unique:users',
+        'password' => 'required|min:6',
+        'github' => 'nullable', // Thêm validation cho github, có thể null
+        'like' => 'required|integer|min:0', // Thêm validation cho like, là số nguyên >= 0
+    ]);
 
-        $data = $request->all();
-        User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => Hash::make($data['password'])
-            
-        ]);
+    $data = $request->all();
+    
+    User::create([
+        'name' => $data['name'],
+        'email' => $data['email'],
+        'password' => Hash::make($data['password']),
+        'github' => $data['github'] ?? null, // Lưu giá trị github, mặc định là null nếu không có
+        'like' => $data['like'], // Lưu giá trị like
+    ]);
 
-        return redirect("login");
-    }
+    return redirect("login");
+}
+
 
 
     /**

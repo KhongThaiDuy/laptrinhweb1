@@ -17,13 +17,14 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->string('phone')->nullable();    // Thêm phone
-            $table->string('address')->nullable();  // Thêm address
+            $table->string('phone')->nullable();
+            $table->string('address')->nullable();
+            $table->string('github')->nullable(); // Thêm trường github
+            $table->integer('like')->default(0);   // Thêm trường like, giá trị mặc định là 0
             $table->rememberToken();
             $table->timestamps();
         });
     }
-
 
     /**
      * Reverse the migrations.

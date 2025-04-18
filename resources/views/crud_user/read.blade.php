@@ -1,7 +1,7 @@
 @extends('dashboard')
 
 @section('content')
-<style>
+    <style>
         body {
             font-family: Arial, sans-serif;
         }
@@ -50,17 +50,19 @@
                             <th>Email</th>
                             <th>Phone</th>
                             <th>Address</th>
-
+                            <th>GitHub</th>
+                            <th>Like</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td>{{$messi->id}}</td>
-                            <td>{{$messi->name}}</td>
-                            <td>{{$messi->email}}</td>
-                            <th>{{ $messi->phone }}</th>
-                            <th>{{ $messi->address }}</th>
-
+                            <td>{{ $messi->id }}</td>
+                            <td>{{ $messi->name }}</td>
+                            <td>{{ $messi->email }}</td>
+                            <td>{{ $messi->phone }}</td>
+                            <td>{{ $messi->address }}</td>
+                            <td>{{ $messi->github }}</td>
+                            <td>{{ $messi->like }}</td>
                         </tr>
                     </tbody>
                 </table>
