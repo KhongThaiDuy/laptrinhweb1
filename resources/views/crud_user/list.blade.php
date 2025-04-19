@@ -1,44 +1,6 @@
 @extends('dashboard')
 
 @section('content')
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 20px 0;
-        }
-
-        table, th, td {
-            border: 1px solid #ccc;
-        }
-
-        th, td {
-            padding: 12px;
-            text-align: left;
-        }
-
-        th {
-            background-color: #f4f4f4;
-        }
-
-        a {
-            text-decoration: none;
-            color: blue;
-        }
-
-        a:hover {
-            color: darkblue;
-        }
-
-        .container {
-            margin-top: 50px;
-        }
-    </style>
-
     <main class="login-form">
         <div class="container">
             <div class="row justify-content-center">
@@ -48,10 +10,7 @@
                             <th>ID</th>
                             <th>Name</th>
                             <th>Email</th>
-                            <th>Phone</th>
-                            <th>Address</th>
-                            <th>GitHub</th>
-                            <th>Like</th>
+                            <th>Roles</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -60,15 +19,15 @@
                             <tr>
                                 <th>{{ $user->id }}</th>
                                 <th>{{ $user->name }}</th>
+                                <th>{{ $user->email }}</th>
                                 <th>
-                                    <a href="{{ route('user.readUser', ['id' => $user->id]) }}">
-                                        {{ $user->email }}
+                                @foreach($user->roles as $role)
+                                    <a href="{{ route('user.role', ['id' => $role->id]) }}">
+                                        {{ $role->name . '-' }}
                                     </a>
+                                @endforeach
+
                                 </th>
-                                <td>{{ $user->phone }}</td>
-                                <td>{{ $user->address }}</td>
-                                <td>{{ $user->github }}</td> 
-                                <td>{{ $user->like }}</td>   
                                 <th>
                                     <a href="{{ route('user.readUser', ['id' => $user->id]) }}">View</a> |
                                     <a href="{{ route('user.updateUser', ['id' => $user->id]) }}">Edit</a> |
@@ -78,6 +37,7 @@
                         @endforeach
                     </tbody>
                 </table>
+                {!! $users->withQueryString()->links('pagination::bootstrap-5') !!}
             </div>
         </div>
     </main>

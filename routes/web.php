@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CrudUserController;
+use App\Http\Controllers\RoleController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -26,3 +28,4 @@ Route::get('/update', [CrudUserController::class, 'updateUser'])->name('user.upd
 Route::post('/update', [CrudUserController::class, 'postUpdateUser'])->name('user.postUpdateUser');
 Route::get('/list', [CrudUserController::class, 'listUser'])->name('user.listUser');
 Route::get('/signOut', [CrudUserController::class, 'signOut'])->name('signout');
+Route::get('/roles/{id}', [RoleController::class, 'role'])->name('user.role');

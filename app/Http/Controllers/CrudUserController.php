@@ -7,13 +7,14 @@ use Session;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Role;
 
 /**
  * CRUD User controller
  */
 class CrudUserController extends Controller
 {
-
+    const MAX_RECORDS = 10;
     /**
      * Login page
      */
@@ -97,7 +98,14 @@ class CrudUserController extends Controller
 
         return redirect("list")->withSuccess('You have signed-in');
     }
+    public function getRole($id)
+    {
+        // Logic xử lý lấy role theo id
+        $role = Role::find($id);
+        $users = $role->users;
 
+        return view('role.view', compact('role', 'users'));
+    }
     /**
      * Form update user page
      */
@@ -136,13 +144,16 @@ class CrudUserController extends Controller
      */
     public function listUser()
     {
+
         if(Auth::check()){
-            $users = User::all();
+            $users = User::paginate(self::MAX_RECORDS);
+
             return view('crud_user.list', ['users' => $users]);
         }
 
         return redirect("login")->withSuccess('You are not allowed to access');
     }
+
 
     /**
      * Sign out
@@ -153,4 +164,5 @@ class CrudUserController extends Controller
 
         return Redirect('login');
     }
+    
 }
