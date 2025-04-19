@@ -60,7 +60,11 @@
                             <tr>
                                 <th>{{ $user->id }}</th>
                                 <th>{{ $user->name }}</th>
-                                <th>{{ $user->email }}</th>
+                                <th>
+                                    <a href="{{ route('user.readUser', ['id' => $user->id]) }}">
+                                        {{ $user->email }}
+                                    </a>
+                                </th>
                                 <td>{{ $user->phone }}</td>
                                 <td>{{ $user->address }}</td>
                                 <td>{{ $user->github }}</td> 
