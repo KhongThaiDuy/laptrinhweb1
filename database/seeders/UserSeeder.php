@@ -14,14 +14,35 @@ class UserSeeder extends Seeder
      * Run the database seeds.
      */
     public function run(): void
-    {
-        //Truncate table
-        DB::table('users')->truncate();
-        //Insert data
+{
+    // Disable foreign key checks
+    DB::statement('SET FOREIGN_KEY_CHECKS=0;');
+
+    // Truncate dependent tables first (nếu có)
+    DB::table('orders')->truncate(); // nếu cần
+    DB::table('users')->truncate();
+
+    // Re-enable foreign key checks
+    DB::statement('SET FOREIGN_KEY_CHECKS=1;');
+
+    // Insert data
+    DB::table('users')->insert([
+        [
+            'name' => 'admin',
+            'email' => 'admin@gmail.com',
+            'email_verified_at' => now(),
+            'password' => Hash::make('123456'),
+            'remember_token' => Str::random(10),
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]
+    ]);
+
+    for ($i = 2; $i < self::MAX_RECORDS; $i++) {
         DB::table('users')->insert([
             [
-                'name' => 'admin',
-                'email' => 'admin@gmail.com',
+                'name' => 'user' . $i,
+                'email' => "admin{$i}@gmail.com",
                 'email_verified_at' => now(),
                 'password' => Hash::make('123456'),
                 'remember_token' => Str::random(10),
@@ -29,19 +50,6 @@ class UserSeeder extends Seeder
                 'updated_at' => now(),
             ]
         ]);
-
-        for($i = 2; $i < self::MAX_RECORDS; $i++) {
-            DB::table('users')->insert([
-                [
-                    'name' => 'user' .$i,
-                    'email' => "admin{$i}@gmail.com",
-                    'email_verified_at' => now(),
-                    'password' => Hash::make('123456'),
-                    'remember_token' => Str::random(10),
-                    'created_at' => now(),
-                    'updated_at' => now(),
-                ]
-            ]);
-        }
     }
+}
 }

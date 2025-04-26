@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CrudUserController;
 use App\Http\Controllers\RoleController;
-
+use App\Http\Controllers\OrderController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -29,3 +29,5 @@ Route::post('/update', [CrudUserController::class, 'postUpdateUser'])->name('use
 Route::get('/list', [CrudUserController::class, 'listUser'])->name('user.listUser');
 Route::get('/signOut', [CrudUserController::class, 'signOut'])->name('signout');
 Route::get('/roles/{id}', [RoleController::class, 'role'])->name('user.role');
+Route::get('/order/{id}', [OrderController::class, 'show'])->name('orders.view');
+

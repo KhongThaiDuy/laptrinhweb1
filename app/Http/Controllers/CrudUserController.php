@@ -8,6 +8,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Role;
+use App\Models\Order;
 
 /**
  * CRUD User controller
@@ -145,12 +146,13 @@ class CrudUserController extends Controller
     public function listUser()
     {
 
-        if(Auth::check()){
-            $users = User::paginate(self::MAX_RECORDS);
-
+        if (Auth::check()) {
+            // Lấy danh sách người dùng cùng với số lượng đơn hàng
+            $users = User::withCount('orders')->paginate(self::MAX_RECORDS);
+    
             return view('crud_user.list', ['users' => $users]);
         }
-
+    
         return redirect("login")->withSuccess('You are not allowed to access');
     }
 
@@ -164,5 +166,12 @@ class CrudUserController extends Controller
 
         return Redirect('login');
     }
-    
+    public function showOrders($id)
+    {
+        // Lấy người dùng theo ID và các đơn hàng của họ
+        $user = User::with('orders')->findOrFail($id);
+
+        return view('crud_user.orders', compact('user'));
+    }
+
 }

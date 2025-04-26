@@ -16,6 +16,7 @@ class DatabaseSeeder extends Seeder
             RoleSeeder::class,
             UserSeeder::class,
             UserRoleSeeder::class,
-        ]);
+            OrderSeeder::class, // <- dòng này cần có
+        ]);        
     }
 }

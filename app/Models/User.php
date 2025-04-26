@@ -50,4 +50,16 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(Role::class, 'user_role');
     }
+    public function orders()
+    {
+        return $this->hasMany(Order::class);
+    }
+    // Thêm thuộc tính 'orders_count' để đếm số lượng đơn hàng
+    protected $appends = ['orders_count'];
+
+    public function getOrdersCountAttribute()
+    {
+        return $this->orders()->count();
+    }
+
 }

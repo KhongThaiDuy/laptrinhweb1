@@ -11,6 +11,7 @@
                             <th>Name</th>
                             <th>Email</th>
                             <th>Roles</th>
+                            <th>Orders</th> <!-- Thêm cột Orders -->
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -21,13 +22,17 @@
                                 <th>{{ $user->name }}</th>
                                 <th>{{ $user->email }}</th>
                                 <th>
-                                @foreach($user->roles as $role)
-                                    <a href="{{ route('user.role', ['id' => $role->id]) }}">
-                                        {{ $role->name . '-' }}
-                                    </a>
-                                @endforeach
-
+                                    @foreach($user->roles as $role)
+                                        <a href="{{ route('user.role', ['id' => $role->id]) }}">
+                                            {{ $role->name . '-' }}
+                                        </a>
+                                    @endforeach
                                 </th>
+                                <th>
+                                <a href="{{ route('orders.view', ['id' => $user->id]) }}">{{ $user->orders_count }}</a>
+                                </th>
+
+
                                 <th>
                                     <a href="{{ route('user.readUser', ['id' => $user->id]) }}">View</a> |
                                     <a href="{{ route('user.updateUser', ['id' => $user->id]) }}">Edit</a> |
